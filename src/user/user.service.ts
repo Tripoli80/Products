@@ -1,4 +1,4 @@
-import { HttpException, HttpStatus, Inject, Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Inject, Injectable, forwardRef } from '@nestjs/common';
 import { Model } from 'mongoose';
 import { CreateUserDto, UpdateUserDto } from './user.dto';
 import { JwtService } from '@nestjs/jwt';
@@ -12,7 +12,7 @@ import { IFindListOrder } from '../base/interfaces';
 export class UsersService {
   constructor(
     private jwtService: JwtService,
-    @Inject(USER_PROVIDE_NAME)
+    @Inject(forwardRef(() =>USER_PROVIDE_NAME))
     private readonly userModel: Model<User>,
   ) {}
   // @InjectModel(User.name) private userModel: Model<User>;

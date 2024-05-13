@@ -7,9 +7,10 @@ import {
   HttpStatus,
   Param,
   Query,
+  Inject,
+  forwardRef,
 } from '@nestjs/common';
 import { UsersService } from './user.service';
-// import { AuthGuard } from 'src/guards/auth-guard';
 import { User } from './user.schema';
 import {
   ApiBearerAuth,
@@ -26,7 +27,10 @@ import { IResponse, OrderType } from '../base/interfaces';
 @ApiBearerAuth('JWT')
 @Controller('user')
 export class UsersController {
-  constructor(private readonly userServices: UsersService) {}
+  constructor(
+    @Inject(forwardRef(() => UsersService))
+    private readonly userServices: UsersService,
+  ) {}
   @Get()
   @UseGuards(AuthGuard)
   @ApiOperation({ description: 'Get all users. Permissions ["Own | Admin"]' })

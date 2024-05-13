@@ -7,7 +7,7 @@ export const userStub = (): User => {
     password: 'A1111111!!!dlfkld',
     name: 'Test',
     token: "sdklckldslclds,cdsl;cds'cds",
-    role: 'admin',
+    role: 'user',
     createdAt: undefined,
     updatedAt: undefined,
   };
@@ -15,7 +15,7 @@ export const userStub = (): User => {
 export const usersStub = (): User[] => {
   return [
     {
-      id: '5',
+      id: '1',
       email: 'ex@ex.us',
       password: 'A1111111!!!dlfkld',
       name: 'Test',
@@ -46,3 +46,12 @@ export const usersStub = (): User[] => {
     },
   ];
 };
+
+export const getReq = () => ({
+  user: {
+    id: '1',
+    email: 'XXXXXXXX',
+    name: 'Test',
+    role: 'user',
+  },
+});
