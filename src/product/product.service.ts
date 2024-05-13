@@ -21,7 +21,6 @@ export class ProductService implements IProductServiceInterface {
   }
 
   async create(createProductDto: CreateProductDto) {
-    console.log('🚀 ~ createProductDto:', createProductDto);
     const product = await this.productModel.create(createProductDto);
     return {
       success: !!product,

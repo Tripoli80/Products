@@ -9,7 +9,7 @@ async function bootstrap() {
   app.useGlobalPipes(new ValidationPipe({ transform: true }));
   const config = new DocumentBuilder()
     .setTitle('Product project')
-    .setDescription('Some API to work with "Product"')
+    .setDescription('API for work with "Product"')
     .addBearerAuth(
       {
         type: 'http',

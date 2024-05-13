@@ -8,7 +8,6 @@ import {
   PRODUCT_PROVIDE_NAME,
 } from 'src/base/constants';
 import { ApiProperty } from '@nestjs/swagger';
-// import { TtypeTextPage } from '../text-pages/text-pagesDto';
 
 export type ProductDocument = HydratedDocument<Product>;
 

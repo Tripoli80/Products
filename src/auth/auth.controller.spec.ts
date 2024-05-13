@@ -35,13 +35,11 @@ describe('AuthController', () => {
         name: 'name',
         createdAt: new Date(),
         updatedAt: new Date(),
-        /* моковий об'єкт користувача для тестування */
       };
 
       jest.spyOn(authService, 'signIn').mockResolvedValueOnce(mockUser);
 
       const result = await controller.signIn(signInDto);
-      console.log("🚀 ~ result:", result)
 
       expect(result).toEqual(mockUser);
     });

@@ -18,13 +18,15 @@ import {
   ApiQuery,
   ApiTags,
 } from '@nestjs/swagger';
-import { AuthGuard } from 'src/guards/auth-guard';
+import { AuthGuard } from '../guards/auth-guard';
 import { ApiBaseRestResponse, ApiModelResponse } from 'src/dto';
 import { Product } from './product.schema';
 import { OrderType } from 'src/base/interfaces';
 import { IUser } from 'src/user/user.interface';
 import { Category } from './product.interface';
-// import { AuthGuard } from 'src/guards/auth-guard';
+
+//i this model in controller i use strategy to return prepered data from serrvice
+// but I think beter use like in userController
 
 @ApiTags('Product')
 @Controller('product')

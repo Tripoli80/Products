@@ -7,7 +7,7 @@ import {
 } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { Request } from 'express';
-import { IUserToken } from './auth.interfaces'  ;
+import { IUserToken } from './auth.interfaces';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { User } from '../user/user.schema';
@@ -65,13 +65,12 @@ export class AuthGuardAdmin implements CanActivate {
       const admin = await this.userModel.findOne({ mail: payload.email });
       payload['token'] = token;
       request['user'] = payload;
-      console.log('🚀 ~ admin:', admin);
 
-      throw new UnauthorizedException();
+      if (admin.role !== 'admin') throw new UnauthorizedException();
+      return true;
     } catch {
       throw new UnauthorizedException();
     }
-    return true;
   }
 
   private extractTokenFromHeader(request: Request): string | undefined {
