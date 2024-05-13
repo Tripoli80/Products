@@ -9,9 +9,9 @@ import { JwtService } from '@nestjs/jwt';
 describe('UsersController', () => {
   let usersController: UsersController;
   let usersService: UsersService;
-  let jwtService: JwtService;
-  let userModel: any;
   beforeEach(() => {
+    let userModel: any;
+    let jwtService: JwtService;
     usersService = new UsersService(jwtService, userModel);
     usersController = new UsersController(usersService);
     jest.clearAllMocks();
@@ -52,24 +52,24 @@ describe('UsersController', () => {
 
       expect(users).toEqual(mockUsers);
     });
-  });
-  describe('getUsers', () => {
-    it('should return users (user)', async () => {
-      const mockUsers = {
-        success: true,
-        data: [userStub()],
-      };
 
-      jest.spyOn(usersService, 'getUsers').mockResolvedValueOnce(usersStub());
-      const users = await usersController.getUsers(
-        {
-          user: userStub(),
-        },
-        10,
-        0,
-        OrderType.ASC,
-      );
-      expect(users).toEqual(mockUsers);
-    });
+      it('should return users (user)', async () => {
+        const mockUsers = {
+          success: true,
+          data: [userStub()],
+        };
+
+        jest.spyOn(usersService, 'getUsers').mockResolvedValueOnce(usersStub());
+        const users = await usersController.getUsers(
+          {
+            user: userStub(),
+          },
+          10,
+          0,
+          OrderType.ASC,
+        );
+        expect(users).toEqual(mockUsers);
+      });
   });
+
 });
