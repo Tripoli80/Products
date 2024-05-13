@@ -1,0 +1,23 @@
+meta {
+  name: Login
+  type: http
+  seq: 3
+}
+
+post {
+  url: http://localhost:3000/auth/login
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+     "email": "e33@ex.ua",
+    "password": "Asjdkkl!!22kld"
+  }
+}
+
+script:post-response {
+  var data = res.body.token;
+  bru.setEnvVar("token",data);
+}

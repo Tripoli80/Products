@@ -1,0 +1,15 @@
+meta {
+  name: By
+  type: http
+  seq: 1
+}
+
+get {
+  url: http://localhost:3000/user/6640dd918fa64ae996ca6bc6
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}
