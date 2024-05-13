@@ -69,8 +69,6 @@ describe('UsersController', () => {
         0,
         OrderType.ASC,
       );
-      console.log('🚀 ~ mockUsers:', mockUsers, users);
-
       expect(users).toEqual(mockUsers);
     });
   });
