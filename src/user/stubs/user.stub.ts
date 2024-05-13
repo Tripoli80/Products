@@ -1,6 +1,6 @@
 import { User } from '../user.schema';
 
-export const userStub = (): User => {
+export const userAdminStub = (): User => {
   return {
     id: '1',
     email: 'ex@ex.us',
@@ -8,6 +8,18 @@ export const userStub = (): User => {
     name: 'Test',
     token: "sdklckldslclds,cdsl;cds'cds",
     role: 'admin',
+    createdAt: undefined,
+    updatedAt: undefined,
+  };
+};
+export const userStub = (): User => {
+  return {
+    id: '1',
+    email: 'ex@ex.us',
+    password: 'A1111111!!!dlfkld',
+    name: 'Test',
+    token: "sdklckldslclds,cdsl;cds'cds",
+    role: 'user',
     createdAt: undefined,
     updatedAt: undefined,
   };
