@@ -7,11 +7,20 @@ import { ValidationPipe } from '@nestjs/common';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.useGlobalPipes(new ValidationPipe({ transform: true }));
+  const apiUrl = !process.env?.npm_lifecycle_script.includes('--watch')
+    ? process.env?.PROD_API_URL
+      ? process.env.PROD_API_URL
+      : 'localhost:3000'
+    : process.env?.DEV_API_URL
+      ? process.env.DEV_API_URL
+      : 'localhost:3000';
+
   const config = new DocumentBuilder()
     .setTitle('Product project')
     .setDescription(
       'API for work with "Product. `Sometime in update (reboting process)`"',
     )
+    .addServer(apiUrl)
     .addBearerAuth(
       {
         type: 'http',
