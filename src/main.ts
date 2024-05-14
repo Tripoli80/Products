@@ -7,18 +7,19 @@ import { ValidationPipe } from '@nestjs/common';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.useGlobalPipes(new ValidationPipe({ transform: true }));
+  const PORT = process.env.PORT || 3001;
   const apiUrl = !process.env?.npm_lifecycle_script.includes('--watch')
     ? process.env?.PROD_API_URL
-      ? process.env.PROD_API_URL
-      : 'localhost:3000'
+      ? `${process.env.PROD_API_URL}:${PORT}`
+      : `localhost:${PORT}`
     : process.env?.DEV_API_URL
-      ? process.env.DEV_API_URL
-      : 'localhost:3000';
+      ? `${process.env.DEV_API_URL}:${PORT}`
+      : `localhost:${PORT}`;
 
   const config = new DocumentBuilder()
     .setTitle('Product project')
     .setDescription(
-      'API for work with "Product. `Sometime in update (reboting process)`"',
+      'API for work with "Product". \n\n`Sometime in update (reboting process)`',
     )
     .addServer(apiUrl)
     .addBearerAuth(
@@ -36,6 +37,6 @@ async function bootstrap() {
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
-  await app.listen(3000);
+  await app.listen(PORT);
 }
 bootstrap();
