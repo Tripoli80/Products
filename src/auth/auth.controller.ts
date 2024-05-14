@@ -22,7 +22,10 @@ export class AuthController {
   constructor(private authService: AuthService) {}
 
   @HttpCode(HttpStatus.OK)
-  @ApiOperation({ description: 'LogIn user. Permissions ["ALL"]\nin exemple record  test  user? you can enter ' })
+  @ApiOperation({
+    description:
+      'LogIn user. Permissions ["ALL"]\n\nin exemple record  test  user, you can enter ',
+  })
   @ApiModelResponse(User)
   @Post('login')
   signIn(@Body() signInDto: SignInDto) {
