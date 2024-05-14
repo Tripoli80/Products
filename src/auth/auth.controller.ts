@@ -10,7 +10,7 @@ import {
 } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { SignInDto, SignUpDto } from './auth.dto';
-import { ApiOperation, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { ApiModelResponse } from 'src/dto';
 import { User } from 'src/user/user.schema';
 import { AuthGuard } from 'src/guards/auth-guard';
@@ -38,7 +38,7 @@ export class AuthController {
   signUp(@Body() signUpDto: SignUpDto) {
     return this.authService.signUp(signUpDto);
   }
-
+  @ApiBearerAuth('JWT')
   @UseGuards(AuthGuard)
   @HttpCode(HttpStatus.OK)
   @ApiOperation({ description: 'Log out user. Permissions ["Auth User"]' })
